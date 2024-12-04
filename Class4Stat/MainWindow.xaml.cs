@@ -1,4 +1,5 @@
 ﻿using Class4Stat.Model;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -10,17 +11,8 @@ namespace Class4Stat
     /// </summary>
     public partial class MainWindow : Window,INotifyPropertyChanged
     {
-        private List<Student> _students;
-
-        public List<Student> Students
-        {
-            get =>_students; 
-            set 
-            {
-                _students = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<Student> Students { get; set; }
+      
 
 
         public Student SelectedStudent {  get; set; }
@@ -28,40 +20,7 @@ namespace Class4Stat
 
         public MainWindow()
         {
-            InitializeComponent();
-            DataContext = this;
-            Students = new List<Student>()
-            {
-                new Student()
-                {
-                    Id = 1,
-                    Lastname="Кто то",
-                    Initials="К. К.",
-                    Hours=100,
-                    Questions=10,
-                    DoneTasks=25,
-                },
-                new Student()
-                {
-                    Id = 2,
-                    Lastname="Ещё кто то",
-                    Initials="Е. К.",
-                    Hours=50,
-                    Questions=5,
-                    DoneTasks=1,
-                },
-
-                new Student()
-                {
-                    Id = 3,
-                    Lastname="Иванов",
-                    Initials="И.И.",
-                    Hours=90,
-                    Questions=0,
-                    DoneTasks=20,
-                }
-
-            };
+            Students = new ObservableCollection<Student>();
 
         }
 
@@ -100,7 +59,8 @@ namespace Class4Stat
 
         private void AddNewStudentButtonClick(object sender, RoutedEventArgs e)
         {
-            int id = Students.Last().Id+1;
+            int id = Students.Count > 0 ? Students.Last().Id + 1 : 1;
+
 
             Student student = new Student()
             {

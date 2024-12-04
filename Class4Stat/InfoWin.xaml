@@ -31,5 +31,6 @@
             </ListView.ItemTemplate>
         </ListView>
         <Button Content="Сохранить в PDF" Click="SaveStudentToPDFButtonClick"/>
+        <Button Content="добавить студента" Click="AddStudent"/>
     </StackPanel>
 </Window>

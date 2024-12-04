@@ -67,5 +67,10 @@ namespace Class4Stat
                 MessageBox.Show("Ошибка", ex.Message);
             }
         }
+
+        private void AddStudent(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
